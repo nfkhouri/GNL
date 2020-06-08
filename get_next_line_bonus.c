@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfranco- <nfranco-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 16:45:58 by nfranco-          #+#    #+#             */
-/*   Updated: 2020/06/04 16:48:44 by nfranco-         ###   ########.fr       */
+/*   Updated: 2020/06/08 18:41:53 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 void			*ft_calloc(size_t count, size_t size)
 {
@@ -80,14 +80,18 @@ static char		*ft_strjoin(char *s1, char *s2)
 
 int				final_step(int fdb, char ***line, char **kpr)
 {
+	char	*tmp;
+
 	if ((fdb < 0))
 	{
 		**line = ft_substr(*kpr, 0, ft_strlen(*kpr));
-		*kpr = free_and_return_null(*kpr);
+		free_and_return_null(kpr);
 		return (0);
 	}
 	**line = ft_substr(*kpr, 0, fdb);
-	*kpr = ft_substr(*kpr, (fdb + 1), ft_strlen(*kpr) - (fdb + 1));
+	tmp = ft_substr(*kpr, (fdb + 1), ft_strlen(*kpr) - (fdb + 1));
+	free_and_return_null(kpr);
+	*kpr = tmp;
 	if (*line)
 		return (1);
 	return (-1);
@@ -110,12 +114,12 @@ int				get_next_line(int fd, char **line)
 	while ((line_exist == 0) && (fdb = read(fd, buff, BUFFER_SIZE)) > 0)
 	{
 		buff[fdb] = '\0';
-		temp = kpr[fd];
-		kpr[fd] = ft_strjoin(kpr[fd], buff);
-		temp = free_and_return_null(temp);
+		temp = ft_strjoin(kpr[fd], buff);
+		free_and_return_null(&kpr[fd]);
+		kpr[fd] = temp;
 		line_exist = is_there_line(kpr[fd]);
 	}
-	buff = free_and_return_null(buff);
+	free_and_return_null(&buff);
 	fdb = find_char_index(kpr[fd], '\n', '\0');
 	return (final_step(fdb, &line, &kpr[fd]));
 }
