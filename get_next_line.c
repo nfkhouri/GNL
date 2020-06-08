@@ -6,7 +6,7 @@
 /*   By: nfranco- <nfranco-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 16:46:27 by nfranco-          #+#    #+#             */
-/*   Updated: 2020/06/04 16:46:28 by nfranco-         ###   ########.fr       */
+/*   Updated: 2020/06/08 18:11:01 by nfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,10 @@ int				get_next_line(int fd, char **line)
 	while ((line_exist == 0) && (fdb = read(fd, buff, BUFFER_SIZE)) > 0)
 	{
 		buff[fdb] = '\0';
-		temp = kpr;
-		kpr = ft_strjoin(kpr, buff);
-		temp = free_and_return_null(temp);
+		//temp = kpr;
+		temp = ft_strjoin(kpr, buff);
+		kpr = free_and_return_null(temp);
+		kpr = temp;
 		line_exist = is_there_line(kpr);
 	}
 	buff = free_and_return_null(buff);
