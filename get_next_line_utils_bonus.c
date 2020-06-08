@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfranco- <nfranco-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 16:46:13 by nfranco-          #+#    #+#             */
-/*   Updated: 2020/06/04 16:48:54 by nfranco-         ###   ########.fr       */
+/*   Updated: 2020/06/08 18:24:47 by aroque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
-char	*free_and_return_null(char *s)
+void	free_and_return_null(char **s)
 {
-	free(s);
-	return (NULL);
+	if (*s && s)
+	{
+		free(*s);
+		*s = NULL;
+	}
 }
 
 int		ft_strlen(char *s)
