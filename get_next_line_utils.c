@@ -6,7 +6,7 @@
 /*   By: nfranco- <nfranco-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 16:46:13 by nfranco-          #+#    #+#             */
-/*   Updated: 2020/06/08 18:24:47 by aroque           ###   ########.fr       */
+/*   Updated: 2020/06/08 22:05:37 by nfranco-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	free_and_return_null(char **s)
 	}
 }
 
-int		ft_strlen(char *s)
+int		ft_strlen_gnl(char *s)
 {
 	int i;
 
